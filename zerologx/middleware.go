@@ -37,7 +37,7 @@ func Process(next echo.HandlerFunc) echo.HandlerFunc {
 		if length == "" {
 			length = "0"
 		}
-		siz, err := strconv.ParseInt(req.Header.Get(echo.HeaderContentLength), 10, 64)
+		siz, err := strconv.ParseInt(length, 10, 64)
 		if err != nil {
 			info.Err(err)
 		}
