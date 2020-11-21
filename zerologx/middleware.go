@@ -27,7 +27,10 @@ func Process(next echo.HandlerFunc) echo.HandlerFunc {
 		info.Str("host", c.Request().Host)
 		info.Str("uri", c.Path())
 		info.Str("method", c.Request().Method)
-		info.Int("status", c.Request().Response.StatusCode)
+		if c.Request().Response != nil {
+			info.Int("status", c.Request().Response.StatusCode)
+		}
+
 		info.Int64("latency", dif.Nanoseconds())
 		info.Str("latency_human", strconv.FormatInt(dif.Microseconds(), 10)+"µs")
 		length := req.Header.Get(echo.HeaderContentLength)
